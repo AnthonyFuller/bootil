@@ -5,11 +5,12 @@ project "bootil_static"
 	files { "../src/**.cpp", "../include/**.h", "../src/**.c", "../src/**.cc", "premake4.lua" }
 	kind "StaticLib"
 	targetname( "bootil_static" )
-	flags { "Symbols", "NoEditAndContinue", "NoPCH", "StaticRuntime", "EnableSSE", "SEH" }
+	symbols "On"
+	editandcontinue "Off"
+	staticruntime "On"
+	vectorextensions "SSE"
 	includedirs { "../include/", "../src/3rdParty/" }
 	
-	if os.is( "linux" ) or os.is( "macosx" ) then
+	if os.host(  ) == "linux" or os.host(  ) == "macosx" then
 		buildoptions { "-fPIC" }
 	end
-	
-
